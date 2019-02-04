@@ -7,6 +7,7 @@ export default class SignUpForm extends Component {
     email: "",
     username: '',
     password: ''
+
   };
   render() {
     return (
@@ -49,7 +50,7 @@ export default class SignUpForm extends Component {
           <input
             type="password"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             value={this.state.password}
           />
           <div className="form-line" />
