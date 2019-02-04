@@ -55,7 +55,7 @@ export default class SignUpForm extends Component {
           />
           <div className="form-line" />
 
-          <button>Submit</button>
+          <button onClick={handleClick}>Submit</button>
         </form>
         <div>
           <h3>Already have an account? Log In </h3>
