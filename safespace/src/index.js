@@ -9,7 +9,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 
-import rootReducer from './store/reducers';
+import rootReducer from './reducers';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
