@@ -19,6 +19,7 @@ nav {
 .nav-links {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: nowrap;
 }
 
 .nav-links a {
@@ -29,3 +30,35 @@ nav {
   padding-right: 2%;
 }
 
+.message-card {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 2%;
+}
+
+.message-input {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  /* margin-left: 20%; */
+}
+
+.message-input input {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 50%;
+}
+.msg-input{
+  width: 54%;
+}
+.card {
+  margin: 2%;
+  width: 300px;
+}
+.message-card Button {
+  margin: 2%;
+}
