@@ -1,32 +1,31 @@
 import axios from 'axios';
 
-export const FETCH_USER_START = 'FETCH_USER_START';
-export const FETCH_USER_SUCCESS = 'FETCH_USER_SUCCESS';
-export const FETCH_USER_FAILURE = 'FETCH_USER_FAILURE';
+export const LOGIN_USER_START = 'LOGIN_USER_START';
+export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
+export const LOGIN_USER_FAILURE = 'LOGIN_USER_FAILURE';
 
-export const ADD_USER_START = 'ADD_USER_START';
-export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
-export const ADD_USER_FAILURE = 'ADD_USER_FAILURE';
+export const SIGNUP_USER_START = 'SIGNUP_USER_START';
+export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS';
+export const SIGNUP_USER_FAILURE = 'SIGNUP_USER_FAILURE';
 
-const URL = 'https://lambda-safe-space.herokuapp.com'
+const URL = 'https://lambda-safe-space.herokuapp.com';
 
-export const signup = () => dispatch => {
-  dispatch({ type: FETCH_USER_START });
+export const signup = (newUser) => (dispatch) => {
+  dispatch({ type: SIGNUP_USER_START });
   axios
-    .get(URL)
-    .then(response =>
-      dispatch({ type: FETCH_USER_SUCCESS, payload: response.data })
+    .post(URL + '/api/register', newUser)
+    .then((response) =>
+      dispatch({ type: SIGNUP_USER_SUCCESS, payload: response.data })
     )
-    .catch(error => dispatch({ type: FETCH_USER_FAILURE, payload: error }));
-  
+    .catch((error) => dispatch({ type: SIGNUP_USER_FAILURE, payload: error }));
 };
 
-export const login = newUser => dispatch => {
-  dispatch({ type: ADD_USER_START });
+export const login = (user) => (dispatch) => {
+  dispatch({ type: LOGIN_USER_START });
   return axios
-    .post(URL, newUser)
-    .then(response => {
-      dispatch({ type: ADD_USER_SUCCESS, payload: response.data });
+    .post(URL + '/api/login', user)
+    .then((response) => {
+      dispatch({ type: LOGIN_USER_SUCCESS, payload: response.data });
     })
-    .catch(error => dispatch({ type: ADD_USER_FAILURE, payload: error }));
+    .catch((error) => dispatch({ type: LOGIN_USER_FAILURE, payload: error }));
 };
