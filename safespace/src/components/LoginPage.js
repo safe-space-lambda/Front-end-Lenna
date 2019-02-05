@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import {login} from '../actions'
+import { Route, NavLink } from 'react-router-dom';
 
 class LoginPage extends Component {
   state = {
@@ -15,6 +16,7 @@ class LoginPage extends Component {
     this.props.login(this.state);
   };
 
+  
   render() {
     return (
       <div className="log-in-container">
@@ -41,7 +43,8 @@ class LoginPage extends Component {
           <button>Submit</button>
         </form>
         <div>
-          <h3>Don't have an account? Sign In </h3>
+          <h3>Don't have an account?</h3>
+          <NavLink to='/signup'>Sign Up</NavLink>
         </div>
       </div>
     );

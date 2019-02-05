@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 
@@ -21,6 +21,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <nav>
+          <div className="nav-links">
+            <NavLink exact to="/">
+             Home
+            </NavLink>
+            <NavLink to="/login">
+              Log In
+            </NavLink>
+            <NavLink to="/signup">Sign Up</NavLink>
+          </div>
+        </nav>
         <Route exact path='/' component={Marketing} />
         <Route path='/signup' component={SignUpView} />
         <Route path='/login' component={LoginView} />

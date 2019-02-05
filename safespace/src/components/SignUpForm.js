@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Route, NavLink } from 'react-router-dom';
 
 export default class SignUpForm extends Component {
   state = {
@@ -59,7 +60,8 @@ export default class SignUpForm extends Component {
           <button>Submit</button>
         </form>
         <div>
-          <h3>Already have an account? Log In </h3>
+          <h3>Already have an account?</h3>
+          <NavLink to='/login'>Log In</NavLink>
         </div>
       </div>
     );
