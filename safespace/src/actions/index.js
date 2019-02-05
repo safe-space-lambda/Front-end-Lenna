@@ -8,9 +8,9 @@ export const ADD_USER_START = 'ADD_USER_START';
 export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
 export const ADD_USER_FAILURE = 'ADD_USER_FAILURE';
 
-const URL = 'http://localhost:3333/items'
+const URL = 'https://lambda-safe-space.herokuapp.com'
 
-export const getUser = () => dispatch => {
+export const signup = () => dispatch => {
   dispatch({ type: FETCH_USER_START });
   axios
     .get(URL)
@@ -21,7 +21,7 @@ export const getUser = () => dispatch => {
   
 };
 
-export const addUser = newUser => dispatch => {
+export const login = newUser => dispatch => {
   dispatch({ type: ADD_USER_START });
   return axios
     .post(URL, newUser)
