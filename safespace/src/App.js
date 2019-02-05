@@ -1,21 +1,39 @@
 import React, { Component } from 'react';
 import './App.css';
-import SignUpForm from './components/Login/SignUpForm'
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
+
+import Marketing from './views/Marketing'
+import LoginView from './views/LoginView'
+import ProfileView from './views/ProfileView'
+import SignUpView from './views/SignUpView'
+import SettingsView from './views/SettingsView'
+
+
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: '',
-    }
+  
+  componentWillReceiveProps = newProps => {
+      if(newProps.isLoggedIn !== this.props.isLoggedIn){
+        this.props.history.push('/profile');
+      }
   }
   render() {
     return (
       <div className="App">
-        <SignUpForm />
-        
+        <Route exact path='/' component={Marketing} />
+        <Route path='/signup' component={SignUpView} />
+        <Route path='/login' component={LoginView} />
+        <Route path='/profile' component={ProfileView} />
+        <Route path='/settings' component={SettingsView} />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  isLoggedIn: state.isLoggedIn
+})
+
+
+export default withRouter(connect(mapStateToProps, {})(App));

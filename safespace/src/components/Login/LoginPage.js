@@ -2,21 +2,28 @@ import React, { Component } from "react";
 
 export default class LoginPage extends Component {
   state = {
-    username: '',
-    password: ''
-
+    username: "",
+    password: ""
   };
+  submit = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  login = () => {
+    this.props.login(this.state);
+  };
+
   render() {
     return (
       <div className="log-in-container">
         <h1>Log In</h1>
-        <form className="log-in-form">
-
+        <form className="log-in-form" onSubmit={this.login}>
           <input
             type="text"
             name="username"
             placeholder="Username"
             value={this.state.username}
+            onChange={this.submit}
           />
           <div className="form-line" />
 
@@ -25,6 +32,7 @@ export default class LoginPage extends Component {
             name="password"
             placeholder="Password"
             value={this.state.password}
+            onChange={this.submit}
           />
           <div className="form-line" />
 
@@ -37,3 +45,13 @@ export default class LoginPage extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+    return {
+        user: state.loginReducer.users,
+        isLoading: state.loginReducer.isLoading,
+        error: state.loginReducer.error
+    }
+}
+
+export default connect(mapStateToProps, {login})(LoginPage);
