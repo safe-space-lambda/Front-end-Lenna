@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 
-export default class Marketing extends Component {
-  render() {
-    return (
-      <div>
-          <h1>marketing site</h1>
-      </div>
+const Marketing = props => {
+    return(
+        <div>
+          <button onClick={() => props.history.push('/login')}>Login Page</button>
+        </div>
     )
-  }
+
 }
+      
+export default Marketing;
