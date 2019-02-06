@@ -9,6 +9,8 @@ import {
 
 const initialState = {
   username: '',
+  name: '',
+  id: '',
   serverToken: '',
   isLoggedIn: false,
   isLoading: false,
@@ -27,7 +29,9 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         username: action.payload.username,
-        serverToken: action.payload,
+        serverToken: action.payload.token,
+        name: action.payload.name,
+        id: action.payload.id,
         isLoading: false,
         isLoggedIn: true,
         error: '',

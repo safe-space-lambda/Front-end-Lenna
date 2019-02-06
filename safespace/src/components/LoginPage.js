@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import {login} from '../actions'
 import { Route, NavLink } from 'react-router-dom';
-
+import { Button } from 'reactstrap';
 class LoginPage extends Component {
   state = {
     username: "",
@@ -12,7 +12,8 @@ class LoginPage extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  login = () => {
+  login = e => {
+    e.preventDefault();
     this.props.login(this.state);
   };
 
@@ -40,7 +41,7 @@ class LoginPage extends Component {
           />
           <div className="form-line" />
 
-          <button>Submit</button>
+          <Button color="primary">Submit</Button>
         </form>
         <div>
           <h3>Don't have an account?</h3>

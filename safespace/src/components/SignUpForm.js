@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Route, NavLink } from 'react-router-dom';
+import { signup } from '../actions';
+import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
 
-export default class SignUpForm extends Component {
+class SignUpForm extends Component {
   state = {
     name: "",
-    phone: "",
-    email: "",
+    phoneNumber: "",
     username: '',
     password: ''
   };
@@ -14,13 +16,17 @@ export default class SignUpForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+ signup = e => {
+   e.preventDefault();
+   this.props.signup(this.state);
+ }
   
 
   render() {
     return (
       <div className="sign-up-container">
         <h1>Sign Up</h1>
-        <form className="sign-up-form" onSubmit={this.handleSubmit}>
+        <form className="sign-up-form" onSubmit={this.signup}>
           <input
             type="text"
             name="name"
@@ -32,9 +38,9 @@ export default class SignUpForm extends Component {
 
           <input
             type="tel"
-            name="phone"
-            placeholder="Phone number"
-            value={this.state.phone}
+            name="phoneNumber"
+            placeholder="Phone number ex. 18002345678"
+            value={this.state.phoneNumber}
             onChange={this.handleChanges}
           />
           <div className="form-line" />
@@ -57,7 +63,7 @@ export default class SignUpForm extends Component {
           />
           <div className="form-line" />
 
-          <button>Submit</button>
+          <Button color="primary">Submit</Button>
         </form>
         <div>
           <h3>Already have an account?</h3>
@@ -67,3 +73,13 @@ export default class SignUpForm extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+    return {
+        name: state.name,
+        users: state.users,
+        isLoading: state.isLoading,
+        error: state.error
+    }
+}
+
+export default connect(mapStateToProps, { signup })(SignUpForm);
