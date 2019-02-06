@@ -9,7 +9,6 @@ const Profile = props => {
        <div className='Profile'>
         <h2>{`Hello ${props.name}`}</h2>
         <MessageForm />
-        <MessageCard user={props.user}/>
         <MessageList />
        </div>
     );

@@ -1,16 +1,26 @@
 import React, { Component } from "react";
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, withRouter} from 'react-router-dom';
 import { signup } from '../actions';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
+import Loader from 'react-loader-spinner'
 
 class SignUpForm extends Component {
   state = {
     name: "",
     phoneNumber: "",
     username: '',
-    password: ''
+    password: '',
+    isLoading: false,
+    isLoggedIn: false
   };
+
+  componentDidUpdate() {
+    if (this.props.isLoggedIn) {
+      this.props.history.push("/profile");
+    }
+  }
+
 
   handleChanges= e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -39,7 +49,7 @@ class SignUpForm extends Component {
           <input
             type="tel"
             name="phoneNumber"
-            placeholder="Phone number ex. 18002345678"
+            placeholder="Phone ex. 18002345678"
             value={this.state.phoneNumber}
             onChange={this.handleChanges}
           />
@@ -64,6 +74,11 @@ class SignUpForm extends Component {
           <div className="form-line" />
 
           <Button color="primary">Submit</Button>
+          {this.props.isLoading && 
+          <div className='login-spinner'>
+          <h3>Loading...</h3>
+          <Loader className="login-spinner" color="#4fa49a" type="Hearts" height={80} width={80} />
+          </div>}
         </form>
         <div>
           <h3>Already have an account?</h3>
@@ -78,8 +93,9 @@ const mapStateToProps = state => {
         name: state.name,
         users: state.users,
         isLoading: state.isLoading,
+        isLoggedIn: state.isLoggedIn,
         error: state.error
     }
 }
 
-export default connect(mapStateToProps, { signup })(SignUpForm);
+export default withRouter(connect(mapStateToProps, { signup })(SignUpForm))

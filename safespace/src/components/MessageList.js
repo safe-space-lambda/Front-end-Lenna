@@ -11,7 +11,7 @@ class MessageList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="message-container">
         {this.props.messages.map(message => {
             return <MessageCard message={message.text} key={message.id} 
             deleteMessage={this.deleteMessage} 
