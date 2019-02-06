@@ -63,7 +63,7 @@ export const fetchMessages = (userId, token) => (dispatch) => {
     );
 };
 
-export const createMessages = (newMessage, userId, token) => (dispatch) => {
+export const createMessage = (newMessage, userId, token) => (dispatch) => {
   dispatch({ type: CREATE_MESSAGE_START });
   let headers = {
     Authorization: token,
@@ -73,11 +73,28 @@ export const createMessages = (newMessage, userId, token) => (dispatch) => {
       headers: headers,
     })
     .then((response) => {
-      dispatch({ type: CREATE_MESSAGE_SUCCESS, payload: response.data }).then(
-        (response) => fetchMessages(userId, token)
-      );
+      dispatch({ type: CREATE_MESSAGE_SUCCESS, payload: response.data });
+      fetchMessages(userId, token);
     })
     .catch((error) =>
       dispatch({ type: CREATE_MESSAGE_FAILURE, payload: error })
+    );
+};
+
+export const deleteMessage = (messageId, userId, token) => (dispatch) => {
+  dispatch({ type: DELETE_MESSAGE_START });
+  let headers = {
+    Authorization: token,
+  };
+  axios
+    .delete(`${URL}/api/messages/${messageId}`, {
+      headers: headers,
+    })
+    .then((response) => {
+      dispatch({ type: DELETE_MESSAGE_SUCCESS, payload: response.data });
+      fetchMessages(userId, token);
+    })
+    .catch((error) =>
+      dispatch({ type: DELETE_MESSAGE_FAILURE, payload: error })
     );
 };
