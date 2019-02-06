@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MessageCard from './MessageCard'
 import MessageForm from './MessageForm'
 import { connect } from 'react-redux'
+import MessageList from './MessageList';
   
 const Profile = props => {
     return (
@@ -9,6 +10,7 @@ const Profile = props => {
         <h2>{`Hello ${props.name}`}</h2>
         <MessageForm />
         <MessageCard user={props.user}/>
+        <MessageList />
        </div>
     );
 }

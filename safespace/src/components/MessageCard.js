@@ -9,35 +9,31 @@ import {
   Button
 } from "reactstrap";
 
+import MessageList from './MessageList'
+
 
 
 class MessageCard extends Component {
-  render() {
+    constructor(props) {
+    super(props)}
+  
+    render() {
     return (
       <div className='message-card'>
         <Card className='card'>
           <CardBody>
             <CardTitle>Message</CardTitle>
             <CardText>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+             {this.props.message}
             </CardText>
             <Button>Update</Button><Button>Delete</Button>
           </CardBody>
         </Card>
-        <Card className='card'>
-          <CardBody>
-            <CardTitle>Message</CardTitle>
-            <CardText>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </CardText>
-            <Button>Update</Button><Button>Delete</Button>
-          </CardBody>
-        </Card>
+        
       </div>
     );
   }
+
 }
 
 export default MessageCard;
