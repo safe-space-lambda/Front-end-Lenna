@@ -14,6 +14,9 @@ import {
   DELETE_MESSAGE_START,
   DELETE_MESSAGE_SUCCESS,
   DELETE_MESSAGE_FAILURE,
+  UPDATE_MESSAGE_START,
+  UPDATE_MESSAGE_SUCCESS,
+  UPDATE_MESSAGE_FAILURE,
 } from '../actions';
 
 const initialState = {
@@ -118,6 +121,24 @@ export const rootReducer = (state = initialState, action) => {
         error: '',
       };
     case DELETE_MESSAGE_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    case UPDATE_MESSAGE_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: '',
+      };
+    case UPDATE_MESSAGE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: '',
+      };
+    case UPDATE_MESSAGE_FAILURE:
       return {
         ...state,
         isLoading: false,

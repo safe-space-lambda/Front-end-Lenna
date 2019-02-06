@@ -98,3 +98,23 @@ export const deleteMessage = (messageId, userId, token) => (dispatch) => {
       dispatch({ type: DELETE_MESSAGE_FAILURE, payload: error })
     );
 };
+
+export const updateMessage = (messageId, updatedMessage, userId, token) => (
+  dispatch
+) => {
+  dispatch({ type: UPDATE_MESSAGE_START });
+  let headers = {
+    Authorization: token,
+  };
+  axios
+    .put(`${URL}/api/messages/${messageId}`, updatedMessage, {
+      headers: headers,
+    })
+    .then((response) => {
+      dispatch({ type: UPDATE_MESSAGE_SUCCESS, payload: response.data });
+      fetchMessages(userId, token);
+    })
+    .catch((error) =>
+      dispatch({ type: UPDATE_MESSAGE_FAILURE, payload: error })
+    );
+};
