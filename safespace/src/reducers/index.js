@@ -21,6 +21,7 @@ import {
 
 const initialState = {
   name: '',
+  userId: '',
   serverToken: '',
   isLoggedIn: false,
   isLoading: false,
@@ -39,7 +40,8 @@ export const rootReducer = (state = initialState, action) => {
     case LOGIN_USER_SUCCESS:
       return {
         ...state,
-        username: action.payload.name,
+        name: action.payload.name,
+        userId: action.payload.userId,
         serverToken: action.payload.token,
         isLoading: false,
         isLoggedIn: true,
