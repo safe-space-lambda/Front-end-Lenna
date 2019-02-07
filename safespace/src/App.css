@@ -5,20 +5,39 @@ font-family: "Source Sans Pro", Helvetica, sans-serif;
 font-size: 16pt;
 font-weight: 300;
 line-height: 1.65em;
+max-width: 1100px;
 }
-
+.logo {
+  height: 100px;
+  width: 100px;
+  margin-right: 40%;
+}
 nav {
+  font-family: "Source Sans Pro", Helvetica, sans-serif;
+  font-size: 16pt;
+  font-weight: 300;
+  line-height: 4em;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
+  align-content: flex-end;
   padding: 0 16px;
   border-bottom: 1px solid #efefef;
   margin-bottom: 32px;
+  background-color: #c3e895;
+  opacity: 60%;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  flex-wrap: nowrap;
+
+
 }
 
 .nav-links {
   display: flex;
   justify-content: flex-end;
+  flex-wrap: nowrap;
 }
 
 .nav-links a {
@@ -27,5 +46,53 @@ nav {
   font-weight: bold;
   margin-right: 8px;
   padding-right: 2%;
+  flex-wrap: nowrap;
 }
 
+.message-card {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+}
+.message-container{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.message-input {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  /* margin-left: 20%; */
+}
+
+.message-input input {
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 50%;
+}
+.msg-input{
+  width: 54%;
+}
+.card {
+  margin: 2%;
+  width: 300px;
+}
+.message-card Button {
+  margin: 2%;
+}
+
+.form-line {
+  padding: 1%;
+}
+
+.update-input {
+  width: 11.625em;
+  margin-bottom: 3%;
+}
+.login-spinner h3 {
+  padding-top: 1%;
+}

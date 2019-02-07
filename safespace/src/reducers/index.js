@@ -41,7 +41,7 @@ export const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         name: action.payload.name,
-        userId: action.payload.userId,
+        userId: action.payload.id,
         serverToken: action.payload.token,
         isLoading: false,
         isLoggedIn: true,

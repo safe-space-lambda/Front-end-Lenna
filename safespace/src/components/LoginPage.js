@@ -1,22 +1,31 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
-import {login} from '../actions'
-import { Route, NavLink } from 'react-router-dom';
+import { connect } from "react-redux";
+import { login } from "../actions";
+import { Route, NavLink, withRouter } from "react-router-dom";
+import { Button } from "reactstrap";
+import Loader from "react-loader-spinner";
 
 class LoginPage extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    isLoading: false
   };
+  componentDidUpdate() {
+    if (this.props.isLoggedIn) {
+      this.props.history.push("/profile");
+    }
+  }
+
   submit = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  login = () => {
+  login = e => {
+    e.preventDefault();
     this.props.login(this.state);
   };
 
-  
   render() {
     return (
       <div className="log-in-container">
@@ -40,11 +49,24 @@ class LoginPage extends Component {
           />
           <div className="form-line" />
 
-          <button>Submit</button>
+          <Button color="primary">Submit</Button>
+          
+          {this.props.isLoading && (
+            <div className="login-spinner">
+            <h3>Loading...</h3>
+              <Loader
+                className="login-spinner"
+                color="#c3e895"
+                type="Hearts"
+                height={80}
+                width={80}
+              />
+            </div>
+          )}
         </form>
         <div>
           <h3>Don't have an account?</h3>
-          <NavLink to='/signup'>Sign Up</NavLink>
+          <NavLink to="/signup">Sign Up</NavLink>
         </div>
       </div>
     );
@@ -52,11 +74,17 @@ class LoginPage extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-        users: state.users,
-        isLoading: state.isLoading,
-        error: state.error
-    }
-}
+  return {
+    users: state.users,
+    isLoading: state.isLoading,
+    error: state.error,
+    isLoggedIn: state.isLoggedIn
+  };
+};
 
-export default connect(mapStateToProps, { login })(LoginPage);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { login }
+  )(LoginPage)
+);

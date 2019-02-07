@@ -1,26 +1,46 @@
 import React, { Component } from "react";
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, withRouter} from 'react-router-dom';
+import { signup } from '../actions';
+import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
+import Loader from 'react-loader-spinner'
 
-export default class SignUpForm extends Component {
+class SignUpForm extends Component {
   state = {
     name: "",
-    phone: "",
-    email: "",
+    phoneNumber: "",
     username: '',
-    password: ''
+    password: '',
+    isLoading: false,
+    isLoggedIn: false
   };
+
+  componentDidUpdate() {
+    if (this.props.isLoggedIn) {
+      this.props.history.push("/profile");
+    }
+  }
+
 
   handleChanges= e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+ signup = e => {
+   e.preventDefault();
+   this.props.signup({
+    name: this.state.name,
+   phoneNumber: this.state.phoneNumber,
+   username: this.state.username,
+   password: this.state.password});
+ }
   
 
   render() {
     return (
       <div className="sign-up-container">
         <h1>Sign Up</h1>
-        <form className="sign-up-form" onSubmit={this.handleSubmit}>
+        <form className="sign-up-form" onSubmit={this.signup}>
           <input
             type="text"
             name="name"
@@ -31,10 +51,10 @@ export default class SignUpForm extends Component {
           <div className="form-line" />
 
           <input
-            type="tel"
-            name="phone"
-            placeholder="Phone number"
-            value={this.state.phone}
+            type="text"
+            name="phoneNumber"
+            placeholder="Phone ex. 18002345678"
+            value={this.state.phoneNumber}
             onChange={this.handleChanges}
           />
           <div className="form-line" />
@@ -57,7 +77,12 @@ export default class SignUpForm extends Component {
           />
           <div className="form-line" />
 
-          <button>Submit</button>
+          <Button color="primary">Submit</Button>
+          {this.props.isLoading && 
+          <div className='login-spinner'>
+          <h3>Loading...</h3>
+          <Loader className="login-spinner" color="#c3e895" type="Hearts" height={80} width={80} />
+          </div>}
         </form>
         <div>
           <h3>Already have an account?</h3>
@@ -67,3 +92,14 @@ export default class SignUpForm extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+    return {
+        name: state.name,
+        users: state.users,
+        isLoading: state.isLoading,
+        isLoggedIn: state.isLoggedIn,
+        error: state.error
+    }
+}
+
+export default withRouter(connect(mapStateToProps, { signup })(SignUpForm))
