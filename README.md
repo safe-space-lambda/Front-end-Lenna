@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 To start
 `cd` into the proper directory then into `safespace` folder
 
-`yarn install` then
+`yarn install`,
 
 `yarn start` 
 Runs the app in the development mode.<br>
