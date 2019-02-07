@@ -56,7 +56,7 @@ class LoginPage extends Component {
             <h3>Loading...</h3>
               <Loader
                 className="login-spinner"
-                color="#4fa49a"
+                color="#c3e895"
                 type="Hearts"
                 height={80}
                 width={80}

@@ -77,7 +77,7 @@ class SignUpForm extends Component {
           {this.props.isLoading && 
           <div className='login-spinner'>
           <h3>Loading...</h3>
-          <Loader className="login-spinner" color="#4fa49a" type="Hearts" height={80} width={80} />
+          <Loader className="login-spinner" color="#c3e895" type="Hearts" height={80} width={80} />
           </div>}
         </form>
         <div>

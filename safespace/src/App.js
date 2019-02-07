@@ -15,7 +15,7 @@ class App extends Component {
   
   render() {
     return (
-      <div className="App">
+      <div >
         <nav>
           <div className="nav-links">
             <NavLink exact to="/">
@@ -26,11 +26,13 @@ class App extends Component {
             <NavLink to="/">Log Out</NavLink>
           </div>
         </nav>
+        <div className="App">
         <Route exact path="/" component={Marketing} />
         <Route path="/signup" component={SignUpView} />
         <Route path="/login" component={LoginView} />
         <Route path="/profile" component={ProfileView} />
         <Route path="/settings" component={SettingsView} />
+        </div>
       </div>
     );
   }
