@@ -18,6 +18,7 @@ class App extends Component {
       <div >
         <nav>
           <div className="nav-links">
+          <img className="logo" src={require("./safespace1.png")} />
             <NavLink exact to="/">
               Home
             </NavLink>

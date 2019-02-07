@@ -9,11 +9,16 @@ class MessageList extends Component {
             this.props.serverToken);
     }
 
+    deleteMessage = (e, userId) => {
+        e.preventDefault();
+        this.props.deleteMessage(userId);
+    }
+
   render() {
     return (
       <div className="message-container">
         {this.props.messages.map(message => {
-            return <MessageCard message={message.text} key={message.id} 
+            return <MessageCard message={message.text} key={message.userId} 
             deleteMessage={this.deleteMessage} 
             updateMessage={this.updateMessage} />
         })}
@@ -28,7 +33,8 @@ const mapStateToProps = state => {
     return {
         messages: state.messages,
         userId: state.userId,
-        serverToken: state.serverToken
+        serverToken: state.serverToken,
+        fetchMessages: state.fetchMessages
     }
 }
 

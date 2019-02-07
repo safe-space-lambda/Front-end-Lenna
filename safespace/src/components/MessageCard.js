@@ -26,7 +26,8 @@ class MessageCard extends Component {
             <CardText>
              {this.props.message}
             </CardText>
-            <Button>Update</Button><Button>Delete</Button>
+            <Button>Update</Button>
+            <Button onClick={e => this.props.deleteMessage(e, this.props.message.userId)}>Delete</Button>
           </CardBody>
         </Card>
         
