@@ -49,7 +49,7 @@ class LoginPage extends Component {
           />
           <div className="form-line" />
 
-          <Button color="primary"style={{backgroundColor: '#4361c2'}}>Submit</Button>
+          <Button color="primary">Submit</Button>
           
           {this.props.isLoading && (
             <div className="login-spinner">

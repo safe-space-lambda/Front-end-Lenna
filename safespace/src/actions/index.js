@@ -74,8 +74,9 @@ export const createMessage = (newMessage, userId, token) => (dispatch) => {
     })
     .then((response) => {
       dispatch({ type: CREATE_MESSAGE_SUCCESS, payload: response.data });
-      fetchMessages(userId, token);
+      
     })
+    .then(()=>fetchMessages(userId, token)(dispatch))
     .catch((error) =>
       dispatch({ type: CREATE_MESSAGE_FAILURE, payload: error })
     );
@@ -92,8 +93,8 @@ export const deleteMessage = (messageId, userId, token) => (dispatch) => {
     })
     .then((response) => {
       dispatch({ type: DELETE_MESSAGE_SUCCESS, payload: response.data });
-      fetchMessages(userId, token);
     })
+    .then(()=>fetchMessages(userId, token)(dispatch))
     .catch((error) =>
       dispatch({ type: DELETE_MESSAGE_FAILURE, payload: error })
     );
@@ -112,8 +113,9 @@ export const updateMessage = (messageId, updatedMessage, userId, token) => (
     })
     .then((response) => {
       dispatch({ type: UPDATE_MESSAGE_SUCCESS, payload: response.data });
-      fetchMessages(userId, token);
     })
+    .then(()=>fetchMessages(userId, token)(dispatch))
+
     .catch((error) =>
       dispatch({ type: UPDATE_MESSAGE_FAILURE, payload: error })
     );

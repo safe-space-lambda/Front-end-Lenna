@@ -28,7 +28,11 @@ class SignUpForm extends Component {
 
  signup = e => {
    e.preventDefault();
-   this.props.signup(this.state);
+   this.props.signup({
+    name: this.state.name,
+   phoneNumber: this.state.phoneNumber,
+   username: this.state.username,
+   password: this.state.password});
  }
   
 
@@ -47,7 +51,7 @@ class SignUpForm extends Component {
           <div className="form-line" />
 
           <input
-            type="tel"
+            type="text"
             name="phoneNumber"
             placeholder="Phone ex. 18002345678"
             value={this.state.phoneNumber}

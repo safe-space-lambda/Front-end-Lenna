@@ -88,3 +88,11 @@ nav {
 .form-line {
   padding: 1%;
 }
+
+.update-input {
+  width: 11.625em;
+  margin-bottom: 3%;
+}
+.login-spinner h3 {
+  padding-top: 1%;
+}

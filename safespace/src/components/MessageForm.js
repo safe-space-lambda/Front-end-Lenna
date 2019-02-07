@@ -8,13 +8,17 @@ class MessageForm extends Component {
         message: ''
     }
     submit = e => {
-    e.preventDefault();    
+    e.preventDefault();  
     this.setState({ [e.target.name]: e.target.value });
-      };
+  };
     handleCreateMessage = e => {
     e.preventDefault();
     this.props.createMessage({text: this.state.message}, 
         this.props.userId, this.props.token)
+    this.setState({
+          ...this.state,
+          message: ''
+      })   
     }
 
 
