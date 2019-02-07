@@ -1,4 +1,6 @@
-## Safe Space App
+## Safe Space App - Front End
+
+[Deployed on Netlify](safespace-lenna.netlify.com)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
