@@ -1,26 +1,34 @@
 import React, { Component } from "react";
-import { InputGroup, InputGroupText, InputGroupAddon, Input, Button} from "reactstrap";
-import { connect } from 'react-redux';
-import { createMessage } from '../actions'
+import {
+  InputGroup,
+  InputGroupText,
+  InputGroupAddon,
+  Input,
+  Button
+} from "reactstrap";
+import { connect } from "react-redux";
+import { createMessage } from "../actions";
 
 class MessageForm extends Component {
-    state = {
-        message: ''
-    }
-    submit = e => {
-    e.preventDefault();  
+  state = {
+    message: ""
+  };
+  submit = e => {
+    e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   };
-    handleCreateMessage = e => {
+  handleCreateMessage = e => {
     e.preventDefault();
-    this.props.createMessage({text: this.state.message}, 
-        this.props.userId, this.props.token)
+    this.props.createMessage(
+      { text: this.state.message },
+      this.props.userId,
+      this.props.token
+    );
     this.setState({
-          ...this.state,
-          message: ''
-      })   
-    }
-
+      ...this.state,
+      message: ""
+    });
+  };
 
   render() {
     return (
@@ -29,13 +37,13 @@ class MessageForm extends Component {
         <div className="message-input">
           <form className="msg-input" onSubmit={this.handleCreateMessage}>
             <InputGroup className="input-group">
-              <Input 
+              <Input
                 type="text"
                 value={this.state.message}
                 onChange={this.submit}
-                name= 'message'
-                />
-                <InputGroupAddon addonType="append">
+                name="message"
+              />
+              <InputGroupAddon addonType="append">
                 <Button>Submit</Button>
               </InputGroupAddon>
             </InputGroup>
@@ -47,13 +55,15 @@ class MessageForm extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-        userId: state.userId,
-        token: state.serverToken,
-        isLoading: state.isLoading,
-        error: state.error
-    }
-}
+  return {
+    userId: state.userId,
+    token: state.serverToken,
+    isLoading: state.isLoading,
+    error: state.error
+  };
+};
 
-export default connect(mapStateToProps, { createMessage })(MessageForm);
-
+export default connect(
+  mapStateToProps,
+  { createMessage }
+)(MessageForm);
