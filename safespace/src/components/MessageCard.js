@@ -43,7 +43,11 @@ class MessageCard extends Component {
               borderRadius: "10px"
             }}
           >
-            <CardTitle>Message</CardTitle>
+            <CardTitle
+            style={{
+              fontWeight: "Bold"
+            }}
+            >Message</CardTitle>
             <CardText>{this.props.message.text}</CardText>
             <input
               className="update-input"
