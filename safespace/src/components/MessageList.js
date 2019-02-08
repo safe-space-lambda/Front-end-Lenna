@@ -19,7 +19,6 @@ class MessageList extends Component {
         this.props.updateMessage(messageID, updatedMessage, 
             this.props.userId, this.props.serverToken )
             console.log(updatedMessage)
-           
 
     }
 

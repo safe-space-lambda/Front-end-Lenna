@@ -16,9 +16,10 @@ class App extends Component {
   render() {
     return (
       <div >
-        <nav>
+        <div className='nav-container'>
+        <img className="logo" src={require("./safespace1.png")} />
           <div className="nav-links">
-          <img className="logo" src={require("./safespace1.png")} />
+          
             <NavLink exact to="/">
               Home
             </NavLink>
@@ -26,7 +27,7 @@ class App extends Component {
             <NavLink to="/login">Log In</NavLink>
             <NavLink to="/">Log Out</NavLink>
           </div>
-        </nav>
+        </div>
         <div className="App">
         <Route exact path="/" component={Marketing} />
         <Route path="/signup" component={SignUpView} />
